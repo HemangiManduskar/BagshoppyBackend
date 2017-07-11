@@ -1,8 +1,16 @@
-package com.niit.BagShoppy;
+package com.niit.model;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import org.springframework.stereotype.Component;
+@Component
+@Entity
+@Table
 
 public class Customer {
 String cusid,cname,cuspswrd,cusemail,cusadd,cusph;
-
+@Id
 public String getCusid() {
 	return cusid;
 }
@@ -10,7 +18,7 @@ public String getCusid() {
 public void setCusid(String cusid) {
 	this.cusid = cusid;
 }
-
+@Column
 public String getCname() {
 	return cname;
 }
@@ -18,7 +26,7 @@ public String getCname() {
 public void setCname(String cname) {
 	this.cname = cname;
 }
-
+@Column
 public String getCuspswrd() {
 	return cuspswrd;
 }
@@ -26,7 +34,7 @@ public String getCuspswrd() {
 public void setCuspswrd(String cuspswrd) {
 	this.cuspswrd = cuspswrd;
 }
-
+@Column
 public String getCusemail() {
 	return cusemail;
 }
@@ -34,7 +42,7 @@ public String getCusemail() {
 public void setCusemail(String cusemail) {
 	this.cusemail = cusemail;
 }
-
+@Column
 public String getCusadd() {
 	return cusadd;
 }
@@ -42,7 +50,7 @@ public String getCusadd() {
 public void setCusadd(String cusadd) {
 	this.cusadd = cusadd;
 }
-
+@Column
 public String getCusph() {
 	return cusph;
 }

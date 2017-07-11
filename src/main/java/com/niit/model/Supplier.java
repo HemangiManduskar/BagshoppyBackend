@@ -1,4 +1,4 @@
-package com.niit.BagShoppy;
+package com.niit.model;
 
 public class Supplier {
 String supid,supname,supadd;
