@@ -6,28 +6,27 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.niit.model.Category;
-@Repository("CategoryDAO")
+import com.niit.model.Product;
+@Repository("ProductDAO")
 
 @Transactional
-public class CatDaoImpl implements CatDao{
+public class ProDaoImpl implements ProDao{
 	@Autowired
 	 SessionFactory sessionFactory;
 	@Override
-	 public List < Category > getAllCategory() {
+	 public List < Product > getAllProduct() {
 	  Session session = sessionFactory.openSession();
-	  Query query = session.createQuery("from Category"); // HQL is used here
+	  Query query = session.createQuery("from Product"); // HQL is used here
 	               // not SQL
-	  List < Category > Categorylist = query.list();
+	  List < Product > productlist = query.list();
 	  session.close();
-	  return Categorylist;
+	  return productlist;
 	 }
 	@Override
-	 public boolean savecat(Category c) {
+	 public boolean savepro(Product p) {
 	  try {
 	   Session session = sessionFactory.openSession();
-	   session.save(c);
+	   session.save(p);
 	   session.flush();
 	   session.close();
 	  } catch (Exception e) {
@@ -36,13 +35,14 @@ public class CatDaoImpl implements CatDao{
 	  return true;
 	 }
 	@Override
-	 public boolean deletecatById(String catid) {
+	 public boolean deleteproById(int pid) {
 	  try {
 	   Session session = sessionFactory.openSession();
-	   Category c= (Category) session.get(Category.class, catid);
-	   if (c == null)
+	   
+	   Product p= (Product) session.get(Product.class, pid);
+	   if (p == null)
 	    return false;
-	   session.delete(c);
+	   session.delete(p);
 	   session.flush();
 	   session.close();
 	  } catch (Exception e) {
@@ -51,10 +51,10 @@ public class CatDaoImpl implements CatDao{
 	  return true;
 	 }
 	 @Override
-	 public boolean updatecat(Category c) {
+	 public boolean updatepro(Product p) {
 	  try {
 	   Session session = sessionFactory.openSession();
-	   session.update(c);
+	   session.update(p);
 	   session.flush();
 	   session.close();
 	  } catch (Exception e) {
@@ -63,12 +63,13 @@ public class CatDaoImpl implements CatDao{
 	  return true;
 	 }
 	 @Override
-	 public Category getcatById(String catid) {
+	 public Product getproById(int pid) {
 
 	  Session session = sessionFactory.openSession();
-	 Category c = (Category) session.get(Category.class, catid);
+	 Product p = (Product) session.get(Product.class, pid);
 	  session.close();
-	  return c;
+	  return p;
 	 }
+	
 	
 }

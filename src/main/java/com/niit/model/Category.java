@@ -3,14 +3,23 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table
 public class Category {
 @Id
+@NotNull
 String catid;
-
+@Column
+String catname;
+@Column
+String catdescriptn;
 public String getCatid() {
 	return catid;
 }
@@ -18,8 +27,10 @@ public String getCatid() {
 public void setCatid(String catid) {
 	this.catid = catid;
 }
-@Column
-String catname;
+
+@NotNull
+@Size(min =2 , max=20)
+
 public String getCatname() {
 	return catname;
 }
@@ -27,8 +38,11 @@ public String getCatname() {
 public void setCatname(String catname) {
 	this.catname = catname;
 }
-@Column
-String catdescriptn;
+
+@NotNull
+@Size(min =2 , max=20)
+
+
 public String getCatdescriptn() {
 	return catdescriptn;
 }

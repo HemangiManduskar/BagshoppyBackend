@@ -3,59 +3,79 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table
 
 public class Customer {
-String cusid,cname,cuspswrd,cusemail,cusadd,cusph;
-@Id
-public String getCusid() {
+	@Id
+	@NotNull
+int cusid;
+	@Column
+String cusname;
+	@Column
+String username;
+	@Column
+String passwrd;
+	@Column
+	int phnno;
+	@Column
+	String email;
+	@Column
+	String cusadd;
+	@Column
+	String userrole;
+public int getCusid() {
 	return cusid;
 }
-
-public void setCusid(String cusid) {
+public void setCusid(int cusid) {
 	this.cusid = cusid;
 }
-@Column
-public String getCname() {
-	return cname;
+public String getCusname() {
+	return cusname;
 }
-
-public void setCname(String cname) {
-	this.cname = cname;
+public void setCusname(String cusname) {
+	this.cusname = cusname;
 }
-@Column
-public String getCuspswrd() {
-	return cuspswrd;
+public String getUsername() {
+	return username;
 }
-
-public void setCuspswrd(String cuspswrd) {
-	this.cuspswrd = cuspswrd;
+public void setUsername(String username) {
+	this.username = username;
 }
-@Column
-public String getCusemail() {
-	return cusemail;
+public String getPasswrd() {
+	return passwrd;
 }
-
-public void setCusemail(String cusemail) {
-	this.cusemail = cusemail;
+public void setPasswrd(String passwrd) {
+	this.passwrd = passwrd;
 }
-@Column
+public int getPhnno() {
+	return phnno;
+}
+public void setPhnno(int phnno) {
+	this.phnno = phnno;
+}
+public String getEmail() {
+	return email;
+}
+public void setEmail(String email) {
+	this.email = email;
+}
 public String getCusadd() {
 	return cusadd;
 }
-
 public void setCusadd(String cusadd) {
 	this.cusadd = cusadd;
 }
-@Column
-public String getCusph() {
-	return cusph;
+public String getUserrole() {
+	return userrole;
+}
+public void setUserrole(String userrole) {
+	this.userrole = userrole;
 }
 
-public void setCusph(String cusph) {
-	this.cusph = cusph;
-}
+
 }
