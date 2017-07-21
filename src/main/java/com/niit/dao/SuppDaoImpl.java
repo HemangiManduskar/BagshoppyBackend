@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.model.Category;
 import com.niit.model.Supplier;
-@Repository("SupplierDAO")
+@Repository("supplierDAO")
 
 @Transactional
 public class SuppDaoImpl implements SuppDao
@@ -30,6 +30,11 @@ public class SuppDaoImpl implements SuppDao
 	 public boolean savesup(Supplier s) {
 	  try {
 	   Session session = sessionFactory.openSession();
+	  
+	   Query q= session.createQuery("select max(supid) from Supplier");
+       int maxsupid=(Integer)q.list().get(0);
+       s.setSupid(maxsupid+1);
+	   
 	   session.save(s);
 	   session.flush();
 	   session.close();

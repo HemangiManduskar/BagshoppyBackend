@@ -6,6 +6,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.niit.model.Category;
 import com.niit.model.Product;
 @Repository("ProductDAO")
 
@@ -18,14 +20,18 @@ public class ProDaoImpl implements ProDao{
 	  Session session = sessionFactory.openSession();
 	  Query query = session.createQuery("from Product"); // HQL is used here
 	               // not SQL
-	  List < Product > productlist = query.list();
+	  List < Product > Productlist = query.list();
 	  session.close();
-	  return productlist;
+	  return Productlist;
 	 }
 	@Override
 	 public boolean savepro(Product p) {
 	  try {
 	   Session session = sessionFactory.openSession();
+	   System.out.println("try ");
+	   Query q= session.createQuery("select max(pid) from Product");
+      int maxpid=(Integer)q.list().get(0);
+      p.setPid(maxpid+1);
 	   session.save(p);
 	   session.flush();
 	   session.close();
@@ -38,7 +44,6 @@ public class ProDaoImpl implements ProDao{
 	 public boolean deleteproById(int pid) {
 	  try {
 	   Session session = sessionFactory.openSession();
-	   
 	   Product p= (Product) session.get(Product.class, pid);
 	   if (p == null)
 	    return false;
@@ -70,6 +75,4 @@ public class ProDaoImpl implements ProDao{
 	  session.close();
 	  return p;
 	 }
-	
-	
 }

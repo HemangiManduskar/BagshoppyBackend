@@ -18,8 +18,7 @@ public class CusDaoImpl implements CusDao{
 	@Override
 	 public List < Customer > getAllCustomer() {
 	  Session session = sessionFactory.openSession();
-	  Query query = session.createQuery("from Customer"); // HQL is used here
-	               // not SQL
+	  Query query = session.createQuery("from Customer"); 
 	  List < Customer > Customerlist = query.list();
 	  session.close();
 	  return Customerlist;
@@ -28,6 +27,10 @@ public class CusDaoImpl implements CusDao{
 	 public boolean savecus(Customer cu) {
 	  try {
 	   Session session = sessionFactory.openSession();
+	   Query q= session.createQuery("select max(cusid) from Customer");
+       int maxcusid=(Integer)q.list().get(0);
+       cu.setCusid(maxcusid+1);
+	   
 	   session.save(cu);
 	   session.flush();
 	   session.close();

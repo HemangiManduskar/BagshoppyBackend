@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.model.Category;
-@Repository("CategoryDAO")
+@Repository("categoryDAO")
 
 @Transactional
 public class CatDaoImpl implements CatDao{
@@ -27,6 +27,10 @@ public class CatDaoImpl implements CatDao{
 	 public boolean savecat(Category c) {
 	  try {
 	   Session session = sessionFactory.openSession();
+	   
+	   Query q= session.createQuery("select max(catid) from Category");
+       int maxcatid=(Integer)q.list().get(0);
+       c.setCatid(maxcatid+1);
 	   session.save(c);
 	   session.flush();
 	   session.close();
@@ -36,7 +40,7 @@ public class CatDaoImpl implements CatDao{
 	  return true;
 	 }
 	@Override
-	 public boolean deletecatById(String catid) {
+	 public boolean deletecatById(int catid) {
 	  try {
 	   Session session = sessionFactory.openSession();
 	   Category c= (Category) session.get(Category.class, catid);
@@ -63,7 +67,7 @@ public class CatDaoImpl implements CatDao{
 	  return true;
 	 }
 	 @Override
-	 public Category getcatById(String catid) {
+	 public Category getcatById(int catid) {
 
 	  Session session = sessionFactory.openSession();
 	 Category c = (Category) session.get(Category.class, catid);

@@ -15,16 +15,16 @@ import org.springframework.stereotype.Component;
 public class Category {
 @Id
 @NotNull
-String catid;
+int catid;
 @Column
 String catname;
 @Column
 String catdescriptn;
-public String getCatid() {
+public int getCatid() {
 	return catid;
 }
 
-public void setCatid(String catid) {
+public void setCatid(int catid) {
 	this.catid = catid;
 }
 
